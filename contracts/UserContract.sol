@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.8.2 <0.9.0;
+pragma solidity >=0.5.16 <0.9.0;
 
 contract UsersContract {
     uint256 public userCount = 0;
