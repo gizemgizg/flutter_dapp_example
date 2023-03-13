@@ -96,13 +96,13 @@ class UserViewModel extends GetxController {
     isLoading = false;
   }
 
-  Future<void> addUser(String title, String description) async {
+  Future<void> addUser(String name, String surname) async {
     await _web3cient.sendTransaction(
       _creds,
       Transaction.callContract(
         contract: _deployedContract,
         function: _createUser,
-        parameters: [title, description],
+        parameters: [],
       ),
     );
     isLoading = true;
