@@ -13,33 +13,24 @@ class UserView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Users'),
       ),
-      body: userViewModel.isLoading
-          ? const Center(
-              child: CircularProgressIndicator(),
-            )
-          : RefreshIndicator(
-              onRefresh: () async {},
-              child: Obx(()=>
-               ListView.builder(
-                  itemCount: userViewModel.users.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(userViewModel.users[index].name),
-                      subtitle: Text(userViewModel.users[index].surname),
-                      trailing: IconButton(
-                        icon: const Icon(
-                          Icons.delete,
-                          color: Colors.red,
-                        ),
-                        onPressed: () {
-                          userViewModel.deleteUser(userViewModel.users[index].id);
-                        },
-                      ),
-                    );
-                  },
-                ),
+      body: ListView.builder(
+        itemCount: userViewModel.users.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(userViewModel.users[index].name),
+            subtitle: Text(userViewModel.users[index].surname),
+            trailing: IconButton(
+              icon: const Icon(
+                Icons.delete,
+                color: Colors.red,
               ),
+              onPressed: () {
+                userViewModel.deleteUser(userViewModel.users[index].id);
+              },
             ),
+          );
+        },
+      ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
@@ -70,7 +61,7 @@ class UserView extends StatelessWidget {
                     onPressed: () {
                       userViewModel.addUser(
                         userViewModel.nameController.text,
-                        userViewModel.nameController.text,
+                        userViewModel.surnameController.text,
                       );
                       Navigator.pop(context);
                     },
